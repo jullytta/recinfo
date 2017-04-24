@@ -1,6 +1,5 @@
 // Diretorio padrao onde todos os arquivos costumam estar
-// diretorio = 'C:\Users\Convidado\Downloads\'
-diretorio = '~/recinfo/Scilab' // --gab
+diretorio = '~/recinfo/Scilab/' 
 
 // Vetor coluna onde cada linha representa o texto de um documento.
 textos = ['O peã e o caval são pec de xadrez. O caval é o melhor do jog.';
