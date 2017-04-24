@@ -5,6 +5,7 @@
 exec(diretorio+'inicializa_matriz_incidencias.sce', -1);
 
 // CÁLCULO DO Ni //
+// TODO: Tornar uma funcao separadas
 // ni é o número de documentos nos quais o termo i aparece
 n = [];
 s_termos = size(termos);
