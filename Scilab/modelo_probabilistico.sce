@@ -19,7 +19,7 @@ n_textos = s_inc(2);
 
 media_tamanho = 0;
 tamanho_texto = [];
-// Calculamos o tamanho dos documentos considerando quantos temos temos neles
+// Calculamos o tamanho dos documentos considerando quantos termos temos neles
 for j=1:n_textos
     tam = sum(incidencias(:,j));
     media_tamanho = media_tamanho + tam;
