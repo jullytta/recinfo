@@ -15,6 +15,7 @@ exec(diretorio+'ponderacao_de_termos.sce', -1);
 
 // Importamos o rank do modelo probabilístico = simBM25.
 exec(diretorio+'modelo_probabilistico.sce', -1);
+simBM25 = gera_simBM25(incidencias);
 
 // Geramos os rankings a partir dos ranks calculados.
 ranking_vet = gera_ranking(ranks_vetorial)';
