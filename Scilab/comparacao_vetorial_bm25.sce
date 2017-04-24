@@ -1,6 +1,5 @@
-// Caminho completo para o diretorio no qual se encontram os
-// scripts do scilab
-diretorio = 'C:\Users\Convidado\Downloads\'
+// A variavel diretorio esta instanciada em entrada.sce
+// Opcionalmente, pode ser instanciada manualmente antes de executar este programa 
 
 // Funções para avaliação da recuperação.
 exec(diretorio+'avaliacao_da_recuperacao.sce', -1);

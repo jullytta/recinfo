@@ -1,9 +1,8 @@
 // Esse script inicializa e imprime uma variável 'incidencias', com a matriz
 // de incidências vinda do script 'entrada.sce'.
 
-// Caminho completo para o diretorio no qual se encontram os
-// scripts do scilab
-diretorio = 'C:\Users\Convidado\Downloads\'
+// A variavel diretorio esta instanciada em entrada.sce
+// Opcionalmente, pode ser instanciada manualmente antes de executar este programa 
 
 // Entrada do programa
 exec(diretorio+'entrada.sce', -1);
