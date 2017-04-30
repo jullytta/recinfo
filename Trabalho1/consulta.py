@@ -51,6 +51,7 @@ def busca(consulta_num, consulta_string, offset=0, n_recuperados=100):
 logging.basicConfig(level=logging.INFO)
 
 # Busca sobre todas as consultas
+# TODO(jullytta): substituir pelo número real da consulta
 contador = 1
 for consulta in recupera_consultas():
   busca(contador, consulta)
