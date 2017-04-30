@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from re import match
+from globais import dir_dados as default_dir
 
 # Esta função foi feita com MUITA boa fé
 # Os arquivos tem que estar formatados perfeitamente
@@ -30,7 +31,7 @@ def find_all(file):
       y = {}
 
 
-def parse_arquivos(dir="./colecao_teste"):
+def parse_arquivos(dir=default_dir):
   # assumindo que dir seja um diretorio contendo arquivos de entrada 
   for file in Path(dir).iterdir():
     with open(str(file), mode='r', encoding="latin_1") as f:
@@ -39,5 +40,5 @@ def parse_arquivos(dir="./colecao_teste"):
 
 
 if __name__ == '__main__':
-  for doc in parse_arquivos('./colecao_teste'):
+  for doc in parse_arquivos():
     print(doc)
