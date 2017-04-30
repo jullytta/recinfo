@@ -47,12 +47,13 @@ def busca(consulta_num, consulta_string, offset=0, n_recuperados=100):
       nomes = nomes_alunos
       ))
 
-# Logs sobre as consultas realizadas
-logging.basicConfig(level=logging.INFO)
+if __name__ == '__main__':
+  # Logs sobre as consultas realizadas
+  logging.basicConfig(level=logging.INFO)
 
-# Busca sobre todas as consultas
-# TODO(jullytta): substituir pelo número real da consulta
-contador = 1
-for consulta in recupera_consultas():
-  busca(contador, consulta)
-  contador += 1
+  # Busca sobre todas as consultas
+  # TODO(jullytta): substituir pelo número real da consulta
+  contador = 1
+  for consulta in recupera_consultas():
+    busca(contador, consulta)
+    contador += 1
