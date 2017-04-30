@@ -6,9 +6,7 @@ import logging
 import sys
 import xapian
 from globais import dir_banco, nomes_alunos
-# TODO(jullytta): substituir pela função real uma vez que
-# a mesma esteja pronta.
-from stubs import recupera_consultas_stub as recupera_consultas
+from parsers_entrada import recupera_consultas
 
 def busca(consulta_num, string_consulta, offset=0, n_recuperados=100):
   # offset - ponto onde o conjunto resultado se inicia
@@ -52,8 +50,5 @@ if __name__ == '__main__':
   logging.basicConfig(level=logging.INFO)
 
   # Busca sobre todas as consultas
-  # TODO(jullytta): substituir pelo número real da consulta
-  contador = 1
   for consulta in recupera_consultas():
-    busca(contador, consulta)
-    contador += 1
+    busca(consulta["n_consulta"], consulta["string_consulta"])
