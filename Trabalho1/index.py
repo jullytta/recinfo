@@ -25,7 +25,7 @@ def index():
   # indexados com o prefixo 'Z'
   # STEM_ALL: todos os termos sofrem stemming, sem prefixo
   # STEM_ALL_Z: todos os termos sofrem stemming, com o prefixo 'Z'
-  gerador_termos.set_stemming_strategy(gerador_termos.STEM_ALL)
+  gerador_termos.set_stemming_strategy(gerador_termos.STEM_SOME)
 
   for campos in parse_sgml():
     # doc_id
