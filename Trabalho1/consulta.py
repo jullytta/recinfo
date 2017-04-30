@@ -38,7 +38,7 @@ def busca(consulta_num, consulta_string, offset=0, n_recuperados=100):
   # especificado pelo trabalho
   resultados = []
   for resultado in pergunta.get_mset(offset, n_recuperados):
-    campos = json.loads(resultado.document.get_data())
+    campos = json.loads(resultado.document.get_data().decode("latin_1"))
     print(u"{n_consulta} Q0 {doc_id} {rank} {peso:.6f} {nomes}".format(
       n_consulta = consulta_num,
       doc_id = campos.get('id'),
