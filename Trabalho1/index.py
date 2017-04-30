@@ -18,6 +18,14 @@ def index():
   
   # Stemmer em português
   geradorTermos.set_stemmer(xapian.Stem("pt"))
+  # Escolhemos a estratégia. A API oferece quatro opções:
+  # STEM_NONE: não aplicar stemming
+  # STEM_SOME: palavras que começam com letra maiúscula não
+  # sofrem stemming; termos que sofreram stemming são
+  # indexados com o prefixo 'Z'
+  # STEM_ALL: todos os termos são indexados, sem prefixo
+  # STEM_ALL_Z: todos os termos são indexados, com o prefixo 'Z'
+  geradorTermos.set_stemming_strategy(geradorTermos.STEM_ALL)
 
   for campos in parse_sgml():
     # DOCID
@@ -31,6 +39,7 @@ def index():
     geradorTermos.set_document(doc)
 
     # TODO(jullytta): Possivelmente adicionar remoção de stopwords
+    # Ver Xapian::TermGenerator set_stopper
 
     # Indexamos o texto (e somente o texto!)
     geradorTermos.index_text(texto)
