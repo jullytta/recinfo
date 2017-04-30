@@ -1,4 +1,3 @@
 colecao_teste/
 db/
-globais.pyc
-stubs.pyc
+*.pyc
