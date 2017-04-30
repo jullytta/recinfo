@@ -30,6 +30,8 @@ def index():
     # Passamos esse documento para o gerador de termos
     geradorTermos.set_document(doc)
 
+    # TODO(jullytta): Possivelmente adicionar remoção de stopwords
+
     # Indexamos o texto (e somente o texto!)
     geradorTermos.index_text(texto)
 
