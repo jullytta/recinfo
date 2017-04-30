@@ -5,9 +5,7 @@ import json
 import sys
 import xapian
 from globais import dir_banco, dir_dados
-# TODO(jullytta): substituir pela função real uma vez que
-# a mesma esteja pronta.
-from miner import parse_arquivos as parse_sgml
+from parsers_entrada import parse_arquivos as parse_sgml
 
 def index():
   # Cria (ou abre, se já criado) o banco de dados
