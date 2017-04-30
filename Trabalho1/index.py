@@ -23,8 +23,8 @@ def index():
   # STEM_SOME: palavras que começam com letra maiúscula não
   # sofrem stemming; termos que sofreram stemming são
   # indexados com o prefixo 'Z'
-  # STEM_ALL: todos os termos são indexados, sem prefixo
-  # STEM_ALL_Z: todos os termos são indexados, com o prefixo 'Z'
+  # STEM_ALL: todos os termos sofrem stemming, sem prefixo
+  # STEM_ALL_Z: todos os termos sofrem stemming, com o prefixo 'Z'
   geradorTermos.set_stemming_strategy(geradorTermos.STEM_ALL)
 
   for campos in parse_sgml():
