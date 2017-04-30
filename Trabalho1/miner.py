@@ -26,7 +26,7 @@ def find_all(file):
     elif reading:
       _text.append(line)
 
-    if "id" in y and "text":
+    if "id" in y and "text" in y:
       yield y
       y = {}
 
