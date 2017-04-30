@@ -4,20 +4,20 @@
 import json
 import sys
 import xapian
-from globais import dirBanco, dirDados
+from globais import dir_banco, dir_dados
 # TODO(jullytta): substituir pela função real uma vez que
 # a mesma esteja pronta.
 from stubs import parse_sgml_stub as parse_sgml
 
 def index():
   # Cria (ou abre, se já criado) o banco de dados
-  db = xapian.WritableDatabase(dirBanco, xapian.DB_CREATE_OR_OPEN)
+  db = xapian.WritableDatabase(dir_banco, xapian.DB_CREATE_OR_OPEN)
 
   # Configura o gerador de termos
-  geradorTermos = xapian.TermGenerator()
+  gerador_termos = xapian.TermGenerator()
   
   # Stemmer em português
-  geradorTermos.set_stemmer(xapian.Stem("pt"))
+  gerador_termos.set_stemmer(xapian.Stem("pt"))
   # Escolhemos a estratégia. A API oferece quatro opções:
   # STEM_NONE: não aplicar stemming
   # STEM_SOME: palavras que começam com letra maiúscula não
@@ -25,24 +25,24 @@ def index():
   # indexados com o prefixo 'Z'
   # STEM_ALL: todos os termos sofrem stemming, sem prefixo
   # STEM_ALL_Z: todos os termos sofrem stemming, com o prefixo 'Z'
-  geradorTermos.set_stemming_strategy(geradorTermos.STEM_ALL)
+  gerador_termos.set_stemming_strategy(gerador_termos.STEM_ALL)
 
   for campos in parse_sgml():
-    # DOCID
-    docID = campos["id"]
+    # doc_id
+    doc_id = campos["id"]
     # TEXT
     texto = campos["text"]
 
     # Criamos um documento
     doc = xapian.Document()
     # Passamos esse documento para o gerador de termos
-    geradorTermos.set_document(doc)
+    gerador_termos.set_document(doc)
 
     # TODO(jullytta): Possivelmente adicionar remoção de stopwords
     # Ver Xapian::TermGenerator set_stopper
 
     # Indexamos o texto (e somente o texto!)
-    geradorTermos.index_text(texto)
+    gerador_termos.index_text(texto)
 
     # Guardamos as informações do documento para recuperá-las
     # no futuro
@@ -50,9 +50,9 @@ def index():
 
     # Vamos guardar o ID no banco também, mas só para garantir
     # que não vamos adicionar esse mesmo documento de novo
-    doc.add_boolean_term(docID)
+    doc.add_boolean_term(doc_id)
     # Se for repetido, só vamos atualizar!
-    db.replace_document(docID, doc)
+    db.replace_document(doc_id, doc)
 
 # Executa a indexação
 index()

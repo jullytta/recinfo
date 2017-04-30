@@ -1,2 +1,2 @@
-dirBanco = "db/"
-dirDados = "colecao_teste/"
+dir_banco = "db/"
+dir_dados = "colecao_teste/"
