@@ -2,18 +2,20 @@
 
 import xml.etree.ElementTree as ET
 
-# parser = ET.XMLPullParser(['start', 'end'])
-parser =  ET.XMLParser(encoding="latin_1")
+def recupera_consultas(fname="./consultas.txt"):
+  parser =  ET.XMLParser(encoding="latin_1")
 
-parser.feed("<root>")
-with open("./consultas.txt", mode="r", encoding="latin_1") as f:
-  parser.feed(f.read())
-parser.feed("</root>")
+  parser.feed("<root>")
+  with open(fname, mode="r", encoding="latin_1") as f:
+    parser.feed(f.read())
+  parser.feed("</root>")
 
-root = parser.close()
+  root = parser.close()
 
-for top in root:
-  for title in i.iterfind("PT-title"):
-    print(j.text)
+  for top in root:
+    for title in top.iterfind("PT-title"):
+      yield title.text
 
-# print(parser.root())
+if __name__ == '__main__':
+  for consulta in recupera_consultas():
+    print(consulta)
