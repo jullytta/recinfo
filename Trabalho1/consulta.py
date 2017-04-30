@@ -23,7 +23,7 @@ def busca(consulta_num, string_consulta, offset=0, n_recuperados=100):
   # Stemming em português
   qp.set_stemmer(xapian.Stem("pt"))
   # Usaremos a mesma estratégia usada na indexação dos documentos
-  qp.set_stemming_strategy(qp.STEM_ALL)
+  qp.set_stemming_strategy(qp.STEM_SOME)
 
   # Transformamos a string em consulta
   consulta = qp.parse_query(string_consulta)
