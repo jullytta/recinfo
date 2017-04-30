@@ -10,7 +10,7 @@ from globais import dir_banco, nomes_alunos
 # a mesma esteja pronta.
 from stubs import recupera_consultas_stub as recupera_consultas
 
-def busca(consulta_num, consulta_string, offset=0, n_recuperados=100):
+def busca(consulta_num, string_consulta, offset=0, n_recuperados=100):
   # offset - ponto onde o conjunto resultado se inicia
   # n_recuperados - quantos documentos serão recuperados
   # (nos limitamos a 100 documentos por default devido a
@@ -28,7 +28,7 @@ def busca(consulta_num, consulta_string, offset=0, n_recuperados=100):
   qp.set_stemming_strategy(qp.STEM_ALL)
 
   # Transformamos a string em consulta
-  consulta = qp.parse_query(consulta_string)
+  consulta = qp.parse_query(string_consulta)
 
   # O objeto Enquire vai nos auxiliar a executar a consulta
   pergunta = xapian.Enquire(db)
