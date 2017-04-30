@@ -1,0 +1,70 @@
+<top>
+<num> 1 </num>
+<PT-title> Viciados na Internet </PT-title>
+<PT-desc> O uso frequente da Internet produz habituação? </PT-desc>
+<PT-narr> Documentos relevantes devem discutir se o uso habitual da Internet pode levar a um vício semelhante ao provocado pelas drogas, conduzindo a dependência fisiológica ou psicológica. </PT-narr>
+</top>
+
+<top>
+<num> 2 </num>
+<PT-title> Adivinhação </PT-title>
+<PT-desc> Como é que os videntes prevêem o futuro? </PT-desc>
+<PT-narr> Documentos relevantes devem mencionar qualquer das várias técnicas empregadas por videntes ou adivinhos para prever o futuro (i.e., astrologia, leitura das palmas da mão, bolas de cristal, leitura das cartas ou cartomância). Previsões que não informam sobre a técnica usada não são relevantes.
+</PT-narr>
+</top>
+
+<top>
+<num> 3 </num>
+<PT-title> Contrabando de material radioativo </PT-title>
+<PT-desc> Encontrar documentos sobre o tráfico internacional ilegal de substâncias radioactivas e materiais nucleares. </PT-desc>
+<PT-narr> Qualquer documento que relate casos de tráfico ilegal ou contrabando de material nuclear ou lixo radioactivo, civil e militar, além das fronteiras nacionais é relevante. </PT-narr>
+</top>
+
+<top>
+<num> 4 </num>
+<PT-title> Aquisições do Deutsche Bank </PT-title>
+<PT-desc> Encontrar os nomes das empresas que foram total ou parcialmente adquiridas pelo Deutsche Bank ou daquelas que ainda estão em fase de negociação. </PT-desc>
+<PT-narr> Documentos relevantes listam firmas que foram compradas ou adquiridas pelo Deutsche Bank; relatos de negociações decorrentes também são importantes. </PT-narr>
+</top>
+
+<top>
+<num> 5 </num>
+<PT-title> Melhor Filme Estrangeiro </PT-title>
+<PT-desc> Quais foram os filmes candidatos ao Oscar de Melhor Filme Estrangeiro? </PT-desc>
+<PT-narr> Documentos relevantes devem indicar o título e nacionalidade dos filmes indicados para o Óscar na categoria de Melhor Filme em Língua Estrangeira. </PT-narr>
+</top>
+
+<top> 
+<num> 6 </num> 
+<PT-title> Ratificação de tratados </PT-title> 
+<PT-desc> Encontrar documentos que mencionem a ratificação oficial de tratados internacionais. </PT-desc> 
+<PT-narr> Documentos relevantes devem mencionar o tratado ou país ou países que o ratificam. Documentos que apenas mencionem a assinatura de um país ou se ele é parte de um tratado não são relevantes. </PT-narr> 
+</top> 
+
+<top>
+<num> 7 </num>
+<PT-title> Bombas não detonadas da Segunda Guerra Mundial </PT-title>
+<PT-desc> Encontrar documentos sobre a descoberta de bombas não denotadas, minas terrestres ou outras munições abandonadas no período da Segunda Grande Guerra. </PT-desc>
+<PT-narr> Documentos relevantes devem especificar a localização onde as bombas foram encontradas intactas (ainda armadas) ou outras munições da época da 2ª Guerra Mundial. Informações sobre as medidas de escavação nas áreas em questão e ações de unidades anti-bombas também são de interesse. Não são pertinentes, porém, relatórios sobre depósitos oficiais de munições. </PT-narr>
+</top>
+
+<top>
+<num> 8 </num>
+<PT-title> Transporte para deficientes </PT-title>
+<PT-desc> Que problemas afrontam as pessoas com deficiência física quando se utilizam de transportes públicos e quais soluções estão sendo propostas ou adotadas? </PT-desc>
+<PT-narr> Documentos relevantes devem descrever as dificuldades defrontadas por deficientes físicos quando devem usar os transportes públicos ou relatar os progressos para a eliminação desses problemas. </PT-narr>
+</top>
+
+<top>
+<num> 9 </num>
+<PT-title> Lesões no futebol </PT-title>
+<PT-desc> Encontrar documentos que descrevam lesões de jogadores profissionais durante partidas de futebol ou treinos antes do jogo. </PT-desc>
+<PT-narr> Documentos relevantes devem descrever a ocorrência de qualquer tipo de lesão sofrida em partidas de futebol, incluindo contusões, distensões musculares, e danos à cartilagem, além de lesões mais sérias como fraturas ou concussões. Danos físicos durante os treinamentos também são pertinentes. </PT-narr>
+</top>
+
+<top>
+<num> 10 </num>
+<PT-title> Ações terroristas com reféns </PT-title>
+<PT-desc> Encontrar documentos que discutam ações de terroristas ou outros grupos militantes envolvendo reféns. </PT-desc>
+<PT-narr> Documentos relevantes descrevem casos concretos em que indivíduos foram feitos reféns de terroristas ou grupos militantes. São excluídas histórias ou filmes que incluam a captura de reféns, assim como quaisquer ações legais de antigos reféns. </PT-narr>
+</top>
