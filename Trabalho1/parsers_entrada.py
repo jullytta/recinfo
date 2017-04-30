@@ -40,12 +40,15 @@ def recupera_documentos(fname):
           }
 
 
-def parse_arquivos(dir="colecao_teste/"):
-  # idealmente isto deveria estar num try-catch
+def parse_arquivos(dir="colecao_teste/", ending=".sgml"):
+  # idealmente garantiriamos que dir existe e é um diretório
   folder = Path(dir).iterdir()
 
-  # idealmente testariamos se cada arquivo é de fato um arquivo
   for file in folder:
+    # le apenas arquivos sgml
+    if not str(file).endswith(ending):
+      continue 
+
     for data in recupera_documentos(str(file)):
       yield data
 
