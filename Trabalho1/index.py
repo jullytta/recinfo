@@ -7,7 +7,7 @@ import xapian
 from globais import dir_banco, dir_dados
 # TODO(jullytta): substituir pela função real uma vez que
 # a mesma esteja pronta.
-from stubs import parse_sgml_stub as parse_sgml
+from miner import parse_arquivos as parse_sgml
 
 def index():
   # Cria (ou abre, se já criado) o banco de dados
@@ -55,4 +55,5 @@ def index():
     db.replace_document(doc_id, doc)
 
 # Executa a indexação
-index()
+if __name__ == '__main__':
+  index()
