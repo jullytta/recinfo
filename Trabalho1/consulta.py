@@ -7,7 +7,6 @@ import sys
 import xapian
 from globais import dir_banco, nomes_alunos
 from parsers_entrada import recupera_consultas
-from remove_stopwords import stopper_pt, init_stopwords
 
 def busca(consulta_num, string_consulta, offset=0, n_recuperados=100):
   # offset - ponto onde o conjunto resultado se inicia
@@ -25,11 +24,9 @@ def busca(consulta_num, string_consulta, offset=0, n_recuperados=100):
   qp.set_stemmer(xapian.Stem("pt"))
   # Usaremos a mesma estratégia usada na indexação dos documentos
   qp.set_stemming_strategy(qp.STEM_ALL)
-  # Remoção de stopwords
-  init_stopwords()
-  # Mesmo stopper customizado
-  stop = stopper_pt()
-  qp.set_stopper(stop)
+  # Mesmo stopper usado na indexação dos documentos
+  stopper = xapian.SimpleStopper("lista_stopwords.txt")
+  qp.set_stopper(stopper)
 
   # Transformamos a string em consulta
   consulta = qp.parse_query(string_consulta)

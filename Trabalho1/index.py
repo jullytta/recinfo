@@ -25,7 +25,8 @@ def index():
   # STEM_ALL_Z: todos os termos sofrem stemming, com o prefixo 'Z'
   gerador_termos.set_stemming_strategy(gerador_termos.STEM_ALL)
 
-  # apenas setando o stopper por desencargo de consciencia
+  # Setando o stopper apenas por desencargo de consciência
+  # Não parece ter nenhum efeito nos resultados das consultas
   stopper = xapian.SimpleStopper("lista_stopwords.txt")
   gerador_termos.set_stopper(stopper)  
   
