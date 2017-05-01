@@ -6,7 +6,6 @@ import sys
 import xapian
 from globais import dir_banco, dir_dados
 from parsers_entrada import parse_arquivos as parse_sgml
-from remove_stopwords import stopper_pt, init_stopwords
 
 def index():
   # Cria (ou abre, se já criado) o banco de dados
@@ -25,16 +24,6 @@ def index():
   # STEM_ALL: todos os termos sofrem stemming, sem prefixo
   # STEM_ALL_Z: todos os termos sofrem stemming, com o prefixo 'Z'
   gerador_termos.set_stemming_strategy(gerador_termos.STEM_ALL)
-
-  # Inicializa stopwords
-  init_stopwords()
-
-  # Remoção de stopwords é feita por um objeto stopper
-  stop = stopper_pt()
-  # Temos nosso próprio stopper customizado
-  gerador_termos.set_stopper(stop)
-  # Todas as stopwords são removidas, com stemming ou não
-  gerador_termos.set_stopper_strategy(gerador_termos.STOP_ALL)
   
   for campos in parse_sgml():
     # doc_id
