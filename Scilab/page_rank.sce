@@ -1,4 +1,4 @@
-// Incomplete implementation of the PageRank algorithm
+// Implementation of the PageRank algorithm
 
 // i,j = 1 if there is an edge from j to i
 incidence_matriz = [ 0 0 1 0
@@ -27,50 +27,40 @@ function outlinks=get_outlink_count(incidence_matriz)
     end
 endfunction
 
-// Returns the page rank of an specific page.
-function page_rank=get_page_rank(page, ranks, incidence_matriz, outlinks, b)
+function weights=get_weights(incidence_matriz, outlinks)
     num_pages = size(incidence_matriz);
     num_pages = num_pages(1);
     
-    page_rank = (1-b)/num_pages;
-
-    summatory = 0;
+    weights = incidence_matriz;
+    
     for page = 1:num_pages
-        for other = 1:num_pages
-            if incidence_matriz(page, other) == 1
-                summatory = summatory + ranks(other)/outlinks(other);
-            end
-        end
-    end
-
-    page_rank = page_rank + 0.8 * summatory;
+        weights(:, page) = weights(:, page)/outlinks(page);
+    end    
 endfunction
 
-function ranks=complete_page_rank(incidence_matriz, outlinks, b, threshold)
+function ranks=page_rank(incidence_matriz, b, threshold)
     num_pages = size(incidence_matriz);
     num_pages = num_pages(1);
 
     ranks = ones(1, num_pages);
     ranks = ranks/num_pages;
-    
-    max_diff = 1;
-    while max_diff > threshold do
-        max_diff = 0;
-        for page = 1:num_pages
-            old_rank = ranks(page);
-            // não deveria atualizar em cima
-            ranks(page)=get_page_rank(page, ranks, incidence_matriz, outlinks, b);
-            this_diff = abs(old_rank - ranks(page));
-            if(this_diff > max_diff)
-                max_diff = this_diff;
-            end
-        end
-    end
 
+    outlinks = get_outlink_count(incidence_matriz);
+    weights = get_weights(incidence_matriz, outlinks);
+
+    weights = weights*b + (1-b)/num_pages;
+    
+    // should be set to "infinity"
+    abs_diff = 1000;
+    while(max(abs_diff) > threshold)
+        old_ranks = ranks;
+        ranks = (weights*ranks')';
+        abs_diff = abs(old_ranks-ranks);
+    end
+    
 endfunction
 
-outlinks = get_outlink_count(incidence_matriz);
-ranks=complete_page_rank(incidence_matriz, outlinks, 0.8, 0.0001);
+ranks = page_rank(incidence_matriz, 0.8, 0.0001);
 disp(ranks);
 
 // Results should be:
