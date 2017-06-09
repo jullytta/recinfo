@@ -1,21 +1,23 @@
 // A variavel diretorio esta instanciada em entrada.sce
-// Opcionalmente, pode ser instanciada manualmente antes de executar este programa 
+// Opcionalmente, pode ser instanciada manualmente antes de executar
+// este programa 
+
+// Inicializa a matriz de incidencias.
+exec(diretorio+'inicializa_matriz_incidencias.sce', -1);
+
+// Funções utilitárias: gera_ranking
+exec(diretorio+'util.sce', -1);
 
 // Funções para avaliação da recuperação.
 exec(diretorio+'avaliacao_da_recuperacao.sce', -1);
 
-// Funções utilitárias.
-exec(diretorio+'util.sce', -1);
-
-// TODO: idealmente os dois execs a seguir seriam chamadas de função
-// que retornam os ranks.
-
 // Importamos o rank da ponderação de termos = ranks_vetorial.
-exec(diretorio+'ponderacao_de_termos.sce', -1);
+exec(diretorio+'modelo_vetorial.sce', -1);
+ranks_vetorial = gera_vetorial(incidencias);
 
 // Importamos o rank do modelo probabilístico = simBM25.
 exec(diretorio+'modelo_probabilistico.sce', -1);
-simBM25 = gera_simBM25(incidencias);
+simBM25 = gera_simBM25(incidencias, 1, 0.75);
 
 // Geramos os rankings a partir dos ranks calculados.
 ranking_vet = gera_ranking(ranks_vetorial)';

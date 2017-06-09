@@ -1,5 +1,6 @@
 // A variavel diretorio esta instanciada em entrada.sce
-// Opcionalmente, pode ser instanciada manualmente antes de executar este programa 
+// Opcionalmente, pode ser instanciada manualmente antes de executar
+// este programa 
 
 // Inicializa matriz 'incidencias'
 exec(diretorio+'inicializa_matriz_incidencias.sce', -1);
