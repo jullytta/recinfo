@@ -5,7 +5,8 @@
 textos = ['De: banco@exemplo.com Para: jane.doe@exemplo.com Título: A fatura do seu cartão está fechada Mensagem: Olá, Jane! Informamos que sua fatura com vencimento em 20 de abril está fechada. Anexamos um boleto com o valor total da fatura para pagamento. Você pode pagar o boleto no seu internet banking, em lotéricas ou qualquer agência bancária ou em caixa eletrônicos. Abraços, Seu Banco Anexo: boleto_abril.pdf';
 'De: chefe@exemplo.com Para: jane.doe@exemplo.com Título: URGENTE! Erro ao acessar banco de dados Mensagem: Jane, nosso cliente reportou um erro na última funcionalidade que você implementou no sistema (acesso ao banco de dados). Estou mandando em anexo a tela de erro. Por favor entre em contato o mais rápido possível para que possamos averiguar a situação. Anexo: erro_banco.jpg';
 'De: mãe@exemplo.com Para: jane.doe@exemplo.com Título: [Sem título] Mensagem: JANE QUERIDA VEJA ESSES LINDOS GIFS DE FILHOTES PARA ANIMAR SEU DIA BEIJOS MAMÃE Anexo: pugs.gif fofura.gif gatinhos.gif';
-'De: empresa@exemplo.com Para: jane.doe@exemplo.com Título: Pagamento Referente ao Mês de Abril Mensagem: Cara Jane, Informamos que seu pagamento para o mês de abril já foi depositado na sua conta bancária. Caso não receba o pagamento dentro de 3-5 dias úteis, favor entrar em contato. Anexo: '];
+'De: empresa@exemplo.com Para: jane.doe@exemplo.com Título: Pagamento Referente ao Mês de Abril Mensagem: Cara Jane, Informamos que seu pagamento para o mês de abril já foi depositado na sua conta bancária. Caso não receba o pagamento dentro de 3-5 dias úteis, favor entrar em contato. Anexo: ';
+'De: jane.doe@exemplo.com Para: namorado@exemplo.com Título: Preciso de ajuda para pagar o cartão Mensagem: Oi amor, bom dia. O banco ainda não liberou meu pagamento desse mês. Pode me ajudar a pagar a fatura do cartão? Devolvo assim que puder! PS: fatura em anexo. Anexo: boleto_abril.pdf'];
 
 
 // Lista de Stopwords
