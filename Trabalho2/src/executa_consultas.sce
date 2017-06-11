@@ -8,6 +8,7 @@ exec(diretorio+'matriz_incidencias.sce', -1); // gera_matriz_incidencias, imprim
 exec(diretorio+'modelo_probabilistico.sce', -1); // gera_simBM25
 exec(diretorio+'modelo_vetorial.sce', -1); // gera_vetorial
 exec(diretorio+'util.sce', -1); // gera_ranking
+exec('~/recinfo/Trabalho2/src/learning_to_rank.sce', -1); // calcula_perda
 
 
 ///////////// Leitura da entrada /////////////
@@ -38,27 +39,33 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 consulta = ['pagamento fatura'];
 
 // Quais documentos são relevantes para a consulta
-R = [1];
+R = [1, 5];
 
 // Qual o ranking "ideal" para a consulta dada
-ranking_ideal = [1];
+ranking_ideal = [1, 5];
 
 
 // Modelo vetorial
 ranks_vetorial = gera_vetorial(incidencias);
 ranking_vet = gera_ranking(ranks_vetorial);
+perda_vet = calcula_perda(ranking_ideal, ranks_vetorial);
 disp("/////// Modelo vetorial ///////");
 disp("Ranks:");
 disp(ranks_vetorial);
 disp("Ranking:");
 disp(ranking_vet);
+disp("Perda:");
+disp(perda_vet);
 
 // Modelo probabilistico
 disp("//// Modelo probabilístico ////");
 ranks_probabilistico = gera_simBM25(incidencias, 1, 0.75);
 ranking_prob = gera_ranking(ranks_probabilistico);
+perda_prob = calcula_perda(ranking_ideal, ranks_probabilistico);
 disp("Ranks:");
 disp(ranks_probabilistico);
 disp("Ranking:");
 disp(ranking_prob);
+disp("Perda:");
+disp(perda_prob);
 
