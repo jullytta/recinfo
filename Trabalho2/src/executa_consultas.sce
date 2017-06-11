@@ -47,12 +47,18 @@ ranking_ideal = [1];
 // Modelo vetorial
 ranks_vetorial = gera_vetorial(incidencias);
 ranking_vet = gera_ranking(ranks_vetorial);
+disp("/////// Modelo vetorial ///////");
+disp("Ranks:");
 disp(ranks_vetorial);
+disp("Ranking:");
 disp(ranking_vet);
 
 // Modelo probabilistico
+disp("//// Modelo probabilístico ////");
 ranks_probabilistico = gera_simBM25(incidencias, 1, 0.75);
 ranking_prob = gera_ranking(ranks_probabilistico);
+disp("Ranks:");
 disp(ranks_probabilistico);
+disp("Ranking:");
 disp(ranking_prob);
 
