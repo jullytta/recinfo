@@ -1,3 +1,6 @@
+diretorio = '~/recinfo/Scilab/';
+exec(diretorio+'modelo_probabilistico.sce', -1); // gera_simBM25
+
 // Função de perda dada como exemplo do modelo clássico Learning-to-Rank.
 // Penaliza pares fora de ordem.
 function perda=calcula_perda(ranking_ideal, ranks_obtidos)
@@ -18,6 +21,20 @@ function perda=calcula_perda(ranking_ideal, ranks_obtidos)
             perda_parcial = perda_parcial^2;
         
             perda = perda + perda_parcial;
+        end
+    end
+endfunction
+
+// Função que escolhe um o valor de beta para BM25 que minimiza perdas,
+// considerando uma consulta específica.
+function b=encontra_beta(incidencias, ranking_ideal)
+    min_perda = 10000; // infinito
+    for temp_b = 0:0.05:1
+        ranks = gera_simBM25(incidencias, 1, temp_b);
+        perda = calcula_perda(ranking_ideal, ranks);
+        if perda < min_perda then
+            b = temp_b;
+            min_perda = perda;
         end
     end
 endfunction

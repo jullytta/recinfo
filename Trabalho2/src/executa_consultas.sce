@@ -8,7 +8,7 @@ exec(diretorio+'matriz_incidencias.sce', -1); // gera_matriz_incidencias, imprim
 exec(diretorio+'modelo_probabilistico.sce', -1); // gera_simBM25
 exec(diretorio+'modelo_vetorial.sce', -1); // gera_vetorial
 exec(diretorio+'util.sce', -1); // gera_ranking
-exec('~/recinfo/Trabalho2/src/learning_to_rank.sce', -1); // calcula_perda
+exec('~/recinfo/Trabalho2/src/learning_to_rank.sce', -1); // calcula_perda, encontra_beta
 
 
 ///////////// Leitura da entrada /////////////
@@ -58,14 +58,23 @@ disp("Perda:");
 disp(perda_vet);
 
 // Modelo probabilistico
-disp("//// Modelo probabilístico ////");
-ranks_probabilistico = gera_simBM25(incidencias, 1, 0.75);
+// Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
+// qual dá melhor resultado, ou seja, minimiza as perdas.
+b = encontra_beta(incidencias, ranking_ideal);
+ranks_probabilistico = gera_simBM25(incidencias, 1, b);
 ranking_prob = gera_ranking(ranks_probabilistico);
 perda_prob = calcula_perda(ranking_ideal, ranks_probabilistico);
+disp("//// Modelo probabilístico ////");
 disp("Ranks:");
 disp(ranks_probabilistico);
 disp("Ranking:");
 disp(ranking_prob);
 disp("Perda:");
 disp(perda_prob);
+
+
+///////////// Segunda consulta  /////////////
+consulta = [''];
+R = [];
+ranking_ideal = [];
 
