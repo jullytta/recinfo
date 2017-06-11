@@ -39,10 +39,10 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 consulta = ['pagamento fatura'];
 
 // Quais documentos são relevantes para a consulta
-R = [1, 5];
+R = [1, 5, 8];
 
 // Qual o ranking "ideal" para a consulta dada
-ranking_ideal = [1, 5];
+ranking_ideal = [1, 8, 5];
 
 
 // Modelo vetorial
