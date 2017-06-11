@@ -5,6 +5,9 @@ diretorio = '~/recinfo/Scilab/';
 // esse script.
 exec(diretorio+'pre-processamento.sce', -1); // normaliza_caixa_baixa, tokeniza, remove_stopwords
 exec(diretorio+'matriz_incidencias.sce', -1); // gera_matriz_incidencias, imprime_matriz_inc
+exec(diretorio+'modelo_probabilistico.sce', -1); // gera_simBM25
+exec(diretorio+'modelo_vetorial.sce', -1); // gera_vetorial
+exec(diretorio+'util.sce', -1); // gera_ranking
 
 
 ///////////// Leitura da entrada /////////////
@@ -31,9 +34,25 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 
 
 ////////////////// Testes  //////////////////
-// Primeira consulta
-consulta = ['banco pagamento'];
+///////////// Primeira consulta /////////////
+consulta = ['pagamento fatura'];
 
 // Quais documentos são relevantes para a consulta
 R = [1];
+
+// Qual o ranking "ideal" para a consulta dada
+ranking_ideal = [1];
+
+
+// Modelo vetorial
+ranks_vetorial = gera_vetorial(incidencias);
+ranking_vet = gera_ranking(ranks_vetorial);
+disp(ranks_vetorial);
+disp(ranking_vet);
+
+// Modelo probabilistico
+ranks_probabilistico = gera_simBM25(incidencias, 1, 0.75);
+ranking_prob = gera_ranking(ranks_probabilistico);
+disp(ranks_probabilistico);
+disp(ranking_prob);
 
