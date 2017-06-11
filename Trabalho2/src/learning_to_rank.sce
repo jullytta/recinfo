@@ -16,8 +16,8 @@ function perda=calcula_perda(ranking_ideal, ranks_obtidos)
             perda_parcial = ranks_obtidos(x_j) - ranks_obtidos(x_i);
             perda_parcial = max(0, perda_parcial);
             perda_parcial = perda_parcial^2;
-        end
         
-        perda = perda + perda_parcial;
+            perda = perda + perda_parcial;
+        end
     end
 endfunction
