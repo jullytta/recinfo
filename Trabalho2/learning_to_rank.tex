@@ -136,7 +136,7 @@ implementação feita em sala do ranqueamento BM25, podemos variar os parâmetro
 valores que minimizam a perda total. Assim, ``aprendemos'' uma função de rankeamento para consultas futuras.
 
 
-\section{Obtendo relevância através de cliques}
+\section{Obtendo Relevância Através de Cliques}
 Como mencionado anteriormente, para aplicar o algoritmo descrito na seção anterior, precisamos saber de antemão a ordem
 de relevância dos documentos. Para descobrí-la, utilizamos o feedback indireto dos usuários, através de cliques.
 
@@ -152,8 +152,11 @@ De fato, estudos mostram que apenas os dois primeiros resultados recebem grande 
 avaliamos os cinco resultados seguintes \cite{thorsten:granka:pan:hembrooke:gay}.
 
 Outras tendências existem: a tendência de qualidade, na qual a chance do usuário clicar em um resultado
-depende da qualidade relativa dele em relação aos outros; a tendência de apresentação, na qual títulos mais atrativos
-ou a aparência do resultado influencia na escolha do usuário.
+depende da qualidade relativa dele em relação aos outros; a tendência de atração, na qual a aparência do resultado 
+(e.g. texto em negrito) influencia nos cliques realizados \cite{yue:patel:roehrig}.
+
+
+\section{Mudanças Propostas pelo Artigo}
 
 Agora vamos considerar a situação levantada pelo artigo: a busca personalizada. Anteriormente, nós podíamos usar o feedback
 que recebemos de um usuário para melhorar os resultados de uma determinada consulta para todos os usuários. Infelizmente,
@@ -169,6 +172,19 @@ temos nenhum feedback sobre estas.
 Surge um novo problema de tendência: a tendência de seleção. Como selecionamos um conjunto $U$ comparativamente pequeno de 
 consultas para basear nosso algoritmo, precisamos adicionar novos parâmetros ao cálculo da perda total para chegar a 
 resultados mais precisos.
+
+% TODO(jullytta): adicionar aqui a mudança do artigo e a nova fórmula %
+
+
+\section{Conjuntos de Dados}
+% Comentar, aqui, sobre não existirem conjuntos de dados de terceiros satisfatórios, não poder existem julgamento
+% por fora também. Falar sobre o conjunto de dados que criei.
+
+\section{Experimentos e Resultados}
+% Onde o código pode ser encontrado, o que foi implementado, o que não fui capaz de implementar, o que eu inventei.
+
+\section{Conclusões}
+
 
 % Bibliografia
 \begin{thebibliography}{6}
@@ -191,6 +207,10 @@ Joachims, Thorsten, Granka, Laura, Pan, Bing, Hembrooke, Helene, Gay, Geri: Accu
 Feedback.
 SIGIR (2005). \url{https://www.cs.cornell.edu/people/tj/publications/joachims_etal_05a.pdf}
 
+\bibitem {yue:patel:roehrig}
+Yue, Yisong, Patel, Rajan, Roehrig, Hein: Beyond Position Bias: Examining Result Attractiveness as
+a Source of Presentation Bias in Clickthrough Data.
+IW3C2 (2010). \url{https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36363.pdf}
 
 \end{thebibliography}
 \end{document}
