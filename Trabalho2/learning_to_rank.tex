@@ -43,24 +43,54 @@
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-Esse trabalho tem como objetivo observar o efeito das propostas do artigo
-Learning to Rank with Selection Bias in Personal Search, comparando sua versão
-modificada à versão original do algoritmo Learning-to-Rank.
-\keywords{learning-to-rank, personal search, comparison}
+Esse trabalho tem como objetivo estudar as propostas do artigo
+Learning to Rank with Selection Bias in Personal Search.
+
+TODO(jullytta): expandir
+\keywords{learning-to-rank, personal search, BM25, machine learning}
 \end{abstract}
 %
-\section{Nome da Seção}
+\section{Introdução}
 %
-Conteúdo da seção.
+Novas tecnologias ligadas a inteligência artificial e aprendizado de máquina estão cada vez mais presentes na área
+de recuperação da informação, formando os chamados sistemas de recuperação inteligentes \cite{chen}. 
+No lugar de especialistas no domínio que manualmente definem a relevância de um documento, entram algoritmos capazes 
+de aprender a ranquear. Contudo, esse conhecimento não surge espontâneamente: é preciso obter um conjunto de dados
+significativo para servir de exemplo para o algoritmo, ou seja, alimentá-lo.
+
+Aprendemos em sala de aula que pode-se obter feedback dos usuários através de seus cliques. Se apresentamos um ranking 
+como resultado de uma consulta, o documento que for acionado pelo usuário (ou seja, aquele que for clicado) provavelmente
+é relevante. Portanto, podemos utilizar a avaliação do próprio usuário para descobrir empiricamente a relevância de um 
+documento perante uma consulta. Evidentemente, precisamos de usuários fazendo essas buscas e verificando os documentos 
+recuperados. Para grandes buscadores na Web, este não é um problema. O buscador Google, por exemplo, lida com
+mais de 40.000 consultas por segundo \cite{google:search:statistics}. Cada uma dessas consultas gera dados preciosos
+que servirão como exemplo para um algoritmo de aprendizado de máquina.
+
+Contudo, o que acontece no caso em que o domínio é mais restrito? Para buscas dentro de documentos pessoais, sejam eles
+e-mails ou arquivos, como descobrimos quais documentos são relevantes? Não podemos nos basear nas milhares de pesquisas
+semelhantes que foram feitas anteriormente: os documentos recuperados são privados e diferentes para cada usuário.
+
+Nas próximas seções, nos aprofundaremos no algoritmo Learning-To-Rank em sua forma utilizada para buscas na Web, fazendo 
+experimentos sobre o mesmo, simulando uma busca sobre domínio particular. Em seguida, estudaremos as propostas apresentadas 
+por Want et al. \cite{wang:bendersky:metzlet:najork} que adaptam o algoritmo para melhor se adequar a buscas personalizadas,
+observando as diferentes tendências que podem influenciar a coleta dos dados.
 
 
 % Bibliografia
 \begin{thebibliography}{6}
 %
 
-\bibitem {learning-to-rank}
+\bibitem {wang:bendersky:metzlet:najork}
 Wang, Xuanhui, Bendersky, Michael, Metzler, Donald, Najork, Marc: Learning to Rank with Selection Bias in Personal Search.
 SIGIR (2016). \url{https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45286.pdf}
+
+\bibitem {chen}
+Chen, Hsinchun: Machine Learning for Information Retrieval: Neural Networks, Symbolic Learning, and Genetic Algorithms.
+Journal of the American Society for Information Science (1995). \url{https://www.marilia.unesp.br/Home/Instituicao/Docentes/EdbertoFerneda/chen27.pdf}
+
+\bibitem {google:search:statistics}
+Internet Live Stats: Google Search Statistics.
+Acesso em 13/06/2017. \url{http://www.internetlivestats.com/google-search-statistics/}
 
 
 \end{thebibliography}
