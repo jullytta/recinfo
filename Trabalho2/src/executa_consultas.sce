@@ -35,41 +35,48 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 
 
 ////////////////// Testes  //////////////////
-///////////// Primeira consulta /////////////
-// Documentos relevantes (nessa ordem): 1, 5 e 8
-consulta = ['pagamento fatura'];
+consultas = ['pagamento fatura'];
 
-// Qual documento foi clicado pelo usuário
+// Qual documento foi clicado pelo usuário na i-ésima consulta.
 // Só consideramos queries nas quais aconteceu um clique.
-clique = 1;
+cliques = [1];
 
-// Modelo vetorial
-ranks_vetorial = gera_vetorial(incidencias);
-ranking_vet = gera_ranking(ranks_vetorial);
-perda_vet = calcula_perda_clique(clique, ranks_vetorial);
-disp("/////// Modelo vetorial ///////");
-disp("Ranks:");
-disp(ranks_vetorial);
-disp("Ranking:");
-disp(ranking_vet);
-disp("Perda:");
-disp(perda_vet);
+n_consultas = size(consultas);
+n_consultas = n_consultas(2);
 
-// Modelo probabilistico
-// Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
-// qual dá melhor resultado, ou seja, minimiza as perdas.
-b = encontra_beta(incidencias, clique);
-ranks_probabilistico = gera_simBM25(incidencias, 1, b);
-ranking_prob = gera_ranking(ranks_probabilistico);
-perda_prob = calcula_perda_clique(clique, ranks_probabilistico);
-disp("//// Modelo probabilístico ////");
-disp("Ranks:");
-disp(ranks_probabilistico);
-disp("Ranking:");
-disp(ranking_prob);
-disp("Perda:");
-disp(perda_prob);
+for i = 1:n_consultas
+    str = strcat(["///////// Consulta #", string(i)]);
+    str = strcat([str, " /////////"]);
+    disp(str);
 
+    consulta = consultas(i);
+    clique = cliques(i);
 
-///////////// Segunda consulta  /////////////
-consulta = [''];
+    // Modelo vetorial
+    ranks_vetorial = gera_vetorial(incidencias);
+    ranking_vet = gera_ranking(ranks_vetorial);
+    perda_vet = calcula_perda_clique(clique, ranks_vetorial);
+    disp("/////// Modelo vetorial ///////");
+    disp("Ranks:");
+    disp(ranks_vetorial);
+    disp("Ranking:");
+    disp(ranking_vet);
+    disp("Perda:");
+    disp(perda_vet);
+    
+   // Modelo probabilistico
+    // Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
+    // qual dá melhor resultado, ou seja, minimiza as perdas.
+    //b = encontra_beta(incidencias, clique);
+    b = 0.75;
+    ranks_probabilistico = gera_simBM25(incidencias, 1, b);
+    ranking_prob = gera_ranking(ranks_probabilistico);
+    perda_prob = calcula_perda_clique(clique, ranks_probabilistico);
+    disp("//// Modelo probabilístico ////");
+    disp("Ranks:");
+    disp(ranks_probabilistico);
+    disp("Ranking:");
+    disp(ranking_prob);
+    disp("Perda:");
+    disp(perda_prob);
+end
