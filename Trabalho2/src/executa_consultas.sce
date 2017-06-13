@@ -83,3 +83,11 @@ for i = 1:n_consultas
     disp("Perda:");
     disp(perda_prob);
 end
+
+// Versão que lida com tendência de seleção, prosposta pelo artigo.
+consultas = ['pagamento fatura', 'erro', 'telefone'];
+cliques = [1, 2, 0];
+[b, perda]=ltr_BM25_select(incidencias, consultas, cliques, 5);
+disp("///// Alteração do artigo /////");
+disp(strcat(["b: ", string(b)]));
+disp(strcat(["perda: ", string(perda)]));

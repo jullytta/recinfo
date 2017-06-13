@@ -89,3 +89,59 @@ function [b, perda]=learn_to_rank_BM25(incidencias, consultas, cliques)
     // Retorna a menor perda possível, atingida com o b escolhido.
     perda = min_perda;
 endfunction
+
+// Similar à função 'learn_to_rank_BM25', mas considera o bias de seleção
+// total_consultas é a quantidade de consultas existente
+function [b, perda]=ltr_BM25_select(incidencias, consultas, cliques, total_consultas)
+    min_perda = 100000; // infinito
+    n_consultas = size(consultas);
+    n_consultas = n_consultas(2);
+
+    // Conta quantas consultas com clique temos
+    n_com_clique = 0;
+    for i = 1:n_consultas
+        if cliques(i) <> 0 then
+            n_com_clique = n_com_clique + 1;
+        end
+    end
+    
+    // Testa diferentes valores de beta
+    for temp_b = 0:0.05:1
+        perda_total = 0;
+        perda_parcial = 0;
+        
+        // Olha para todas as consultas
+        for i = 1:n_consultas
+            consulta = consultas(i);
+            clique = cliques(i);
+            
+            // Apenas consultas com clique contam!
+            if clique <> 0 then
+                ranks = gera_simBM25(incidencias, 1, temp_b);
+                
+                // Perda da i-ésima consulta
+                perda_parcial = calcula_perda_clique(clique, ranks);
+                
+                // Razão entre a probabilidade da consulta ser selecionada e
+                // a probabilidade da consulta ter clique
+                peso_parcial = (n_consultas/total_consultas)/(n_com_clique/total_consultas);
+                
+                perda_parcial = perda_parcial * peso_parcial;
+                
+                // Perda da escolha de b
+                perda_total = perda_total + perda_parcial;
+            end
+        end
+        
+        // Média sobre as consultas com clique
+        perda_total = perda_total/n_com_clique;
+        
+        if perda_total < min_perda then
+            b = temp_b;
+            min_perda = perda_total;
+        end
+    end
+    
+    // Retorna a menor perda possível, atingida com o b escolhido.
+    perda = min_perda;
+endfunction
