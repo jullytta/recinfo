@@ -22,6 +22,10 @@
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
+% Importar PDF Gráfico
+\usepackage{graphicx}
+\usepackage{pdfpages}
+
 % to typeset URLs, URIs, and DOIs
 \usepackage{url}
 \def\UrlFont{\rmfamily}
@@ -182,6 +186,12 @@ resultados mais precisos.
 
 \section{Experimentos e Resultados}
 % Onde o código pode ser encontrado, o que foi implementado, o que não fui capaz de implementar, o que eu inventei.
+
+\begin{figure}[ht]
+  \caption{Gráfico comparativo entre os valores de perda com e sem a alteração proposta pelo artigo.}
+  \centering
+  \includegraphics[page=1,width=1\textwidth]{b_x_perda_graf.pdf}
+\end{figure}
 
 \section{Conclusões}
 
