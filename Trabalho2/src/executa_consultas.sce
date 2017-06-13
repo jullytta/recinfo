@@ -73,6 +73,3 @@ disp(perda_prob);
 
 ///////////// Segunda consulta  /////////////
 consulta = [''];
-
-ranking_ideal = [];
-
