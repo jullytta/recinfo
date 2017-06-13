@@ -25,6 +25,30 @@ function perda=calcula_perda(ranking_ideal, ranks_obtidos)
     end
 endfunction
 
+// Função de perda parecida com o modelo clássico, porém na qual não
+// conhecemos quais documentos são mais ou menos relevantes para a
+// consulta. A única informação é qual documento foi clicado.
+// Não leva em consideração nenhuma tendência.
+function perda=calcula_perda_clique(clique, ranks_obtidos)
+    s_docs = size(ranks_obtidos);
+    s_docs = s_docs(2);
+    
+    perda = 0;
+    for i = 1:s_docs
+        // Para todo documento que não foi clicado e tem rank maior
+        // do que o documento clicado, vamos calcular a perda.
+        // Ou seja, o documento clicado é considerado mais relevante que
+        // todos os outros, que são igualmente irrelevantes.
+        if i <> clique & ranks_obtidos(clique) < ranks_obtidos(i) then
+            perda_parcial = ranks_obtidos(i) - ranks_obtidos(clique);
+            perda_parcial = max(0, perda_parcial);
+            perda_parcial = perda_parcial^2;
+        
+            perda = perda + perda_parcial;
+        end
+    end
+endfunction
+
 // Função que escolhe um o valor de beta para BM25 que minimiza perdas,
 // considerando uma consulta específica.
 function b=encontra_beta(incidencias, ranking_ideal)

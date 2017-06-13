@@ -36,19 +36,17 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 
 ////////////////// Testes  //////////////////
 ///////////// Primeira consulta /////////////
+// Documentos relevantes (nessa ordem): 1, 5 e 8
 consulta = ['pagamento fatura'];
 
-// Quais documentos são relevantes para a consulta
-R = [1, 5, 8];
-
-// Qual o ranking "ideal" para a consulta dada
-ranking_ideal = [1, 8, 5];
-
+// Qual documento foi clicado pelo usuário
+// Só consideramos queries nas quais aconteceu um clique.
+clique = 1;
 
 // Modelo vetorial
 ranks_vetorial = gera_vetorial(incidencias);
 ranking_vet = gera_ranking(ranks_vetorial);
-perda_vet = calcula_perda(ranking_ideal, ranks_vetorial);
+perda_vet = calcula_perda_clique(clique, ranks_vetorial);
 disp("/////// Modelo vetorial ///////");
 disp("Ranks:");
 disp(ranks_vetorial);
@@ -60,10 +58,10 @@ disp(perda_vet);
 // Modelo probabilistico
 // Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
 // qual dá melhor resultado, ou seja, minimiza as perdas.
-b = encontra_beta(incidencias, ranking_ideal);
+b = 0.75
 ranks_probabilistico = gera_simBM25(incidencias, 1, b);
 ranking_prob = gera_ranking(ranks_probabilistico);
-perda_prob = calcula_perda(ranking_ideal, ranks_probabilistico);
+perda_prob = calcula_perda_clique(clique, ranks_probabilistico);
 disp("//// Modelo probabilístico ////");
 disp("Ranks:");
 disp(ranks_probabilistico);
@@ -75,6 +73,6 @@ disp(perda_prob);
 
 ///////////// Segunda consulta  /////////////
 consulta = [''];
-R = [];
+
 ranking_ideal = [];
 
