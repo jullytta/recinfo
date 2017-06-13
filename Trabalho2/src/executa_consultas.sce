@@ -35,11 +35,11 @@ imprime_matriz_inc(incidencias, termos, nomes_textos);
 
 
 ////////////////// Testes  //////////////////
-consultas = ['pagamento fatura'];
+consultas = ['pagamento fatura', 'erro'];
 
 // Qual documento foi clicado pelo usuário na i-ésima consulta.
 // Só consideramos queries nas quais aconteceu um clique.
-cliques = [1];
+cliques = [1, 2];
 
 n_consultas = size(consultas);
 n_consultas = n_consultas(2);
