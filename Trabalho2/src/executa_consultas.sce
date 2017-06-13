@@ -90,7 +90,7 @@ cliques = [1, 2, 0];
 [b, min_perda, perdas_c_select] = ltr_BM25_select(incidencias, consultas, cliques, 5);
 disp("///// Alteração do artigo /////");
 disp(strcat(["b: ", string(b)]));
-disp(strcat(["perda: ", string(perda)]));
+disp(strcat(["perda: ", string(min_perda)]));
 
 range_b = 0:0.05:1;
 plot(range_b, perdas_s_select, "r");
