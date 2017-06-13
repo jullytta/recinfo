@@ -48,6 +48,7 @@ n_consultas = n_consultas(2);
 // as perdas para as consultas apresentadas.
 // Tendências não consideradas.
 [b, perda] = learn_to_rank_BM25(incidencias, consultas, cliques);
+disp(strcat(["Beta escolhido para BM25:", string(b)]));
 
 // Impressão de resultados para cada consulta.
 for i = 1:n_consultas
