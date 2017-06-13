@@ -177,7 +177,19 @@ Surge um novo problema de tendência: a tendência de seleção. Como selecionam
 consultas para basear nosso algoritmo, precisamos adicionar novos parâmetros ao cálculo da perda total para chegar a 
 resultados mais precisos.
 
-% TODO(jullytta): adicionar aqui a mudança do artigo e a nova fórmula %
+O artigo usa ponderação de propensão inversa para calcular um peso para cada consulta. Em outras palavras, a 
+probabilidade da consulta estar no grupo selecionado $U$ e a probabilidade essa consulta ter ou não cliques são levadas em
+conta ao calcular a perda daquela consulta. Se chamamos o conjunto de consultas com cliques $S$, temos que $P(U)$ é a 
+probabilidade de $q$ estar em $U$ e $P(S)$ é a probabilidade de $q$ estar em $S$. A nova perda total é dada por:
+
+\begin{equation}
+perda_{total}(f) = \frac{1}{|S|}\times \sum_{q \in S} \frac{P(U)}{P(S)} \times perda(f, q)
+\end{equation}
+
+Tais probabilidades são calculadas empiricamente. O artigo propõe formas mais completas e complexas que fogem do escopo do
+trabalho. A estimativa grosseira utilizada foi que $P(S) = \frac{|S|}{|T|}$ e $P(U) = \frac{|U|}{|T|}$, onde T é o número
+total de consultas diferentes que podemos fazer no sistema. Consideramos um conjunto limitado de termos que podem ser
+utilizados para tornar essa abordagem possível.
 
 
 \section{Conjuntos de Dados}
@@ -192,6 +204,8 @@ resultados mais precisos.
   \centering
   \includegraphics[page=1,width=1\textwidth]{b_x_perda_graf.pdf}
 \end{figure}
+
+\pagebreak
 
 \section{Conclusões}
 
