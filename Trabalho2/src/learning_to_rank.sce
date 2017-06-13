@@ -53,11 +53,13 @@ endfunction
 // considerando um conjunto de consultas e quais documentos foram clicados
 // em cada uma delas.
 // Não leva em consideração tendências.
-function [b, perda]=learn_to_rank_BM25(incidencias, consultas, cliques)
+function [b, min_perda, perdas]=learn_to_rank_BM25(incidencias, consultas, cliques)
     min_perda = 100000; // infinito
     n_consultas = size(consultas);
     n_consultas = n_consultas(2);
 
+    perdas = [];
+    
     // Testa diferentes valores de beta
     for temp_b = 0:0.05:1
         perda_total = 0;
@@ -79,23 +81,23 @@ function [b, perda]=learn_to_rank_BM25(incidencias, consultas, cliques)
         
         // Média sobre todas as consultas
         perda_total = perda_total/n_consultas;
-        
+    
+        perdas = [perdas, perda_total];    
         if perda_total < min_perda then
             b = temp_b;
             min_perda = perda_total;
         end
     end
-    
-    // Retorna a menor perda possível, atingida com o b escolhido.
-    perda = min_perda;
 endfunction
 
 // Similar à função 'learn_to_rank_BM25', mas considera o bias de seleção
 // total_consultas é a quantidade de consultas existente
-function [b, perda]=ltr_BM25_select(incidencias, consultas, cliques, total_consultas)
+function [b, min_perda, perdas]=ltr_BM25_select(incidencias, consultas, cliques, total_consultas)
     min_perda = 100000; // infinito
     n_consultas = size(consultas);
     n_consultas = n_consultas(2);
+    
+    perdas = [];
 
     // Conta quantas consultas com clique temos
     n_com_clique = 0;
@@ -135,13 +137,11 @@ function [b, perda]=ltr_BM25_select(incidencias, consultas, cliques, total_consu
         
         // Média sobre as consultas com clique
         perda_total = perda_total/n_com_clique;
-        
+
+        perdas = [perdas, perda_total];        
         if perda_total < min_perda then
             b = temp_b;
             min_perda = perda_total;
         end
     end
-    
-    // Retorna a menor perda possível, atingida com o b escolhido.
-    perda = min_perda;
 endfunction

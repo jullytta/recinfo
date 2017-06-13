@@ -47,7 +47,7 @@ n_consultas = n_consultas(2);
 // Observamos diversos valores de b e identificamos qual minimiza
 // as perdas para as consultas apresentadas.
 // Tendências não consideradas.
-[b, perda] = learn_to_rank_BM25(incidencias, consultas, cliques);
+[b, min_perda, perdas_s_select] = learn_to_rank_BM25(incidencias, consultas, cliques);
 disp(strcat(["Beta escolhido para BM25:", string(b)]));
 
 // Impressão de resultados para cada consulta.
@@ -87,7 +87,12 @@ end
 // Versão que lida com tendência de seleção, prosposta pelo artigo.
 consultas = ['pagamento fatura', 'erro', 'telefone'];
 cliques = [1, 2, 0];
-[b, perda]=ltr_BM25_select(incidencias, consultas, cliques, 5);
+[b, min_perda, perdas_c_select] = ltr_BM25_select(incidencias, consultas, cliques, 5);
 disp("///// Alteração do artigo /////");
 disp(strcat(["b: ", string(b)]));
 disp(strcat(["perda: ", string(perda)]));
+
+range_b = 0:0.05:1;
+plot(range_b, perdas_s_select, "r");
+plot(range_b, perdas_c_select, "b");
+
