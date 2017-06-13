@@ -85,8 +85,9 @@ observando as diferentes tendências que podem influenciar a coleta dos dados.
 
 \section{Learning-to-Rank}
 Dada uma consulta $q$ e seu conjunto de resultados ${x_1,\dots,x_n}$, o objetivo do algoritmo
-é encontrar uma função de ranqueamento $f(x)$ que minimize a perda total. A definição de perda
-varia de acordo com a implementação. Neste trabalho, utilizamos uma função de perda par-a-par
+é encontrar uma função de ranqueamento $f(x)$ que minimize a perda total.
+
+A definição de perda varia de acordo com a implementação. Neste trabalho, utilizamos uma função de perda par-a-par
 simples, sugerida como modelo clássico pelo artigo estudado.
 
 Para cada par $x_i$ e $x_j$ onde $x_i$ é mais relevante que $x_j$, temos:
@@ -131,6 +132,9 @@ Por hora, vamos considerar que temos um ``ranking ideal'' contendo essa informa�
   \end{algorithmic}
 \end{algorithm}
 
+Uma vez que definimos nossa avaliação de $f$, é possível aprender qual uma função ótima. Por exemplo, aproveitando a 
+implementação feita em sala do ranqueamento BM25, podemos variar os parâmetros $b$ e $K_1$ até encontrar seus 
+valores que minimizam a perda total. Assim, ``aprendemos'' uma função de rankeamento para consultas futuras.
 
 % Bibliografia
 \begin{thebibliography}{6}
