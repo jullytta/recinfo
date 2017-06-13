@@ -193,8 +193,33 @@ utilizados para tornar essa abordagem possível.
 
 
 \section{Conjuntos de Dados}
-% Comentar, aqui, sobre não existirem conjuntos de dados de terceiros satisfatórios, não poder existem julgamento
-% por fora também. Falar sobre o conjunto de dados que criei.
+Como o objetivo é trabalhar com um conjunto de dados particular, coleções com julgamento de relevância explícito não são
+abundantes. De fato, apesar de existirem muitos sites que disponibilizam conjuntos de dados interessantes, como o site da
+TREC \cite{trec}, nenhum deles se encaixava bem no propósito desse trabalho. O mais próximo encontrado foi o 
+conjunto de dados de e-mails Eron \cite{eron}.
+
+Construímos, portanto, nosso próprio conjunto de dados, baseado no conjunto Eron. O conjunto de dados simula uma caixa de
+e-mails de uma mulher chamada Jane Doe, jane.doe@exemplo.com. Cada documento é um email, representado por uma string.
+Essas strings tem a seguinte estrutura:
+
+\begin{verbatim}
+<email>
+  <de></de>
+  <para></para>
+  <assunto></assunto>
+  <categoria></categoria>
+  <mensagem></mensagem>
+  <anexo></anexo>
+</email>
+\end{verbatim}
+
+Durante o pré-processamento de dados, foram removidas stopwords comuns da língua portuguesa. Os atributos da estrutura 
+dos documentos também foram considerados stopwords. Portanto, não foram indexadas as palavras 'email', 'de',
+'para', 'assunto', 'categoria', 'mensagem' e 'anexo'.
+
+O conjunto de dados completo, junto da lista de stopwords e separadores, se encontra em: 
+\url{https://github.com/jullytta/recinfo/blob/master/Trabalho2/src/entrada.sce}
+
 
 \section{Experimentos e Resultados}
 % Onde o código pode ser encontrado, o que foi implementado, o que não fui capaz de implementar, o que eu inventei.
@@ -206,6 +231,7 @@ utilizados para tornar essa abordagem possível.
 \end{figure}
 
 \pagebreak
+
 
 \section{Conclusões}
 
@@ -235,6 +261,14 @@ SIGIR (2005). \url{https://www.cs.cornell.edu/people/tj/publications/joachims_et
 Yue, Yisong, Patel, Rajan, Roehrig, Hein: Beyond Position Bias: Examining Result Attractiveness as
 a Source of Presentation Bias in Clickthrough Data.
 IW3C2 (2010). \url{https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36363.pdf}
+
+\bibitem {trec}
+Text REtrieval Conference (TREC): Data.
+Acesso em 13/06/2017. \url{http://trec.nist.gov/data.html}
+
+\bibitem {eron}
+Eron Email Dataset.
+Acesso em 13/06/2017. \url{https://www.cs.cmu.edu/~./enron/}
 
 \end{thebibliography}
 \end{document}
