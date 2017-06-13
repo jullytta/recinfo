@@ -58,7 +58,6 @@ envolvendo os modelos vetorial e probabilístico.
 \end{abstract}
 %
 \section{Introdução}
-%
 Novas tecnologias ligadas a inteligência artificial e aprendizado de máquina estão cada vez mais presentes na área
 de recuperação da informação, formando os chamados sistemas de recuperação inteligentes \cite{chen}. 
 No lugar de especialistas no domínio que manualmente definem a relevância de um documento, entram algoritmos capazes 
@@ -136,6 +135,27 @@ Uma vez que definimos nossa avaliação de $f$, é possível aprender qual uma f
 implementação feita em sala do ranqueamento BM25, podemos variar os parâmetros $b$ e $K_1$ até encontrar seus 
 valores que minimizam a perda total. Assim, ``aprendemos'' uma função de rankeamento para consultas futuras.
 
+
+\section{Obtendo relevância através de cliques}
+Como mencionado anteriormente, para aplicar o algoritmo descrito na seção anterior, precisamos saber de antemão a ordem
+de relevância dos documentos. Para descobrí-la, utilizamos o feedback indireto dos usuários, através de cliques.
+
+Vamos começar considerando a situação na qual o usuário fez uma consulta e clica em diversos resultados.
+Será que podemos considerá-los relevantes para a consulta? Qual é mais relevante, o que foi clicado primeiro?
+Todos os outros documentos não clicados são, então, irrelevantes?
+
+Para responder estas perguntas, precisamos considerar as chamadas \textit{tendências}. O usuário não avalia a relevância
+de cada documento apresentado independentemente; o ranqueamento influencia na decisão de clicar ou não em um resultado.
+Existem vários tipos diferentes de tendências. A mais comum é a tendência de posição, ou ainda tendência de confiança:
+um usuário tende a clicar em resultados com maior rank, tanto por confiar no SRI, quanto pela sua posição.
+De fato, estudos mostram que apenas os dois primeiros resultados recebem grande atenção, que cai rapidamente quando 
+avaliamos os cinco resultados seguintes \cite{thorsten:granka:pan:hembrooke:gay}.
+
+Outras tendências existem: a tendência de qualidade, na qual a chance do usuário clicar em um resultado
+depende da qualidade relativa dele em relação aos outros; a tendência de apresentação, na qual títulos mais atrativos
+ou a aparência do resultado influencia na escolha do usuário.
+
+
 % Bibliografia
 \begin{thebibliography}{6}
 %
@@ -151,6 +171,11 @@ Journal of the American Society for Information Science (1995). \url{https://www
 \bibitem {google:search:statistics}
 Internet Live Stats: Google Search Statistics.
 Acesso em 13/06/2017. \url{http://www.internetlivestats.com/google-search-statistics/}
+
+\bibitem {thorsten:granka:pan:hembrooke:gay}
+Joachims, Thorsten, Granka, Laura, Pan, Bing, Hembrooke, Helene, Gay, Geri: Accurately Interpreting Clickthrough Data as Implicit
+Feedback.
+SIGIR (2005). \url{https://www.cs.cornell.edu/people/tj/publications/joachims_etal_05a.pdf}
 
 
 \end{thebibliography}
