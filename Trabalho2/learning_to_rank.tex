@@ -16,6 +16,12 @@
 % Para língua portuguesa
 \usepackage[utf8]{inputenc}
 
+% Algoritmos
+\usepackage{algorithm} 
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
 % to typeset URLs, URIs, and DOIs
 \usepackage{url}
 \def\UrlFont{\rmfamily}
@@ -75,6 +81,55 @@ Nas próximas seções, nos aprofundaremos no algoritmo Learning-To-Rank em sua 
 experimentos sobre o mesmo, simulando uma busca sobre domínio particular. Em seguida, estudaremos as propostas apresentadas 
 por Want et al. \cite{wang:bendersky:metzlet:najork} que adaptam o algoritmo para melhor se adequar a buscas personalizadas,
 observando as diferentes tendências que podem influenciar a coleta dos dados.
+
+
+\section{Learning-to-Rank}
+Dada uma consulta $q$ e seu conjunto de resultados ${x_1,\dots,x_n}$, o objetivo do algoritmo
+é encontrar uma função de ranqueamento $f(x)$ que minimize a perda total. A definição de perda
+varia de acordo com a implementação. Neste trabalho, utilizamos uma função de perda par-a-par
+simples, sugerida como modelo clássico pelo artigo estudado.
+
+Para cada par $x_i$ e $x_j$ onde $x_i$ é mais relevante que $x_j$, temos:
+
+\begin{equation}
+perda_{par} = max(0, f(x_j) - f(x_i))^2
+\end{equation}
+
+A perda da função $f$ para com a consulta $q$, ou seja, $perda(f, q)$, é a soma da perda par-a-par para todo 
+$x_i, x_j$ indicado acima. Dessa forma, estamos penalizando funções que possuem pares fora de ordem.
+Além disso, a perda par-a-par é proporcional à distância entre os ranks.
+
+Digamos que temos um conjunto finito de consultas que o usuário pode fazer, $Q$. 
+Selecionamos um subconjunto $U$ de consultas, como amostra aleatória, para avaliar a função $f$.
+Assim, a perda total é:
+
+\begin{equation}
+perda_{total}(f) = \frac{1}{|U|}\times \sum_{q \in U} perda(f, q)
+\end{equation}
+
+Ou seja, uma média aritmética das perdas para cada consulta $q$.
+
+Note que para sermos capazes de calcular a perda apresentada, precisamos conhecer de antemão a ordem decrescente de 
+relevância  dos documentos para cada uma das consultas. Vamos discutir como abordar esse problema na próxima seção. 
+Por hora, vamos considerar que temos um ``ranking ideal'' contendo essa informação.
+
+\begin{algorithm}
+  \caption{Perda Total}
+  \begin{algorithmic}[1]
+    \REQUIRE conjunto de consultas U, ranking ideal para cada consulta R, função f(x)
+    \ENSURE perda total de f
+    \STATE $perda_{total} \Leftarrow 0$
+    \FOR{$q$ em $U$}
+      \STATE $perda_{consulta} \Leftarrow 0$
+      \FORALL{$x_i, x_j$ onde $x_i$ aparece antes de $x_j$ em $R$}
+	\STATE $perda_{par} \Leftarrow max(0, f(x_j) - f(x_i))^2$
+	\STATE $perda_{consulta} \Leftarrow perda_{consulta} + perda_{par}$
+      \ENDFOR
+      \STATE $perda_{total} \Leftarrow perda_{total} + perda_{consulta}$
+    \ENDFOR
+    \STATE $perda_{total} \Leftarrow perda_{total} \times \frac{1}{|U|}$
+  \end{algorithmic}
+\end{algorithm}
 
 
 % Bibliografia
