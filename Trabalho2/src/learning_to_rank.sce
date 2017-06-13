@@ -50,12 +50,13 @@ function perda=calcula_perda_clique(clique, ranks_obtidos)
 endfunction
 
 // Função que escolhe um o valor de beta para BM25 que minimiza perdas,
-// considerando uma consulta específica.
-function b=encontra_beta(incidencias, ranking_ideal)
+// considerando uma consulta específica e qual documento foi clicado
+// pelo usuário após essa consulta.
+function b=encontra_beta(incidencias, clique)
     min_perda = 10000; // infinito
     for temp_b = 0:0.05:1
         ranks = gera_simBM25(incidencias, 1, temp_b);
-        perda = calcula_perda(ranking_ideal, ranks);
+        perda = calcula_perda_clique(clique, ranks);
         if perda < min_perda then
             b = temp_b;
             min_perda = perda;

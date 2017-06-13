@@ -58,7 +58,7 @@ disp(perda_vet);
 // Modelo probabilistico
 // Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
 // qual dá melhor resultado, ou seja, minimiza as perdas.
-b = 0.75
+b = encontra_beta(incidencias, clique);
 ranks_probabilistico = gera_simBM25(incidencias, 1, b);
 ranking_prob = gera_ranking(ranks_probabilistico);
 perda_prob = calcula_perda_clique(clique, ranks_probabilistico);
