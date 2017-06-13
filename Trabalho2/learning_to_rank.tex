@@ -140,7 +140,7 @@ valores que minimizam a perda total. Assim, ``aprendemos'' uma função de ranke
 Como mencionado anteriormente, para aplicar o algoritmo descrito na seção anterior, precisamos saber de antemão a ordem
 de relevância dos documentos. Para descobrí-la, utilizamos o feedback indireto dos usuários, através de cliques.
 
-Vamos começar considerando a situação na qual o usuário fez uma consulta e clica em diversos resultados.
+Vamos começar considerando a situação na qual o usuário fez uma consulta em um buscador web e clica em diversos resultados.
 Será que podemos considerá-los relevantes para a consulta? Qual é mais relevante, o que foi clicado primeiro?
 Todos os outros documentos não clicados são, então, irrelevantes?
 
@@ -155,6 +155,20 @@ Outras tendências existem: a tendência de qualidade, na qual a chance do usuá
 depende da qualidade relativa dele em relação aos outros; a tendência de apresentação, na qual títulos mais atrativos
 ou a aparência do resultado influencia na escolha do usuário.
 
+Agora vamos considerar a situação levantada pelo artigo: a busca personalizada. Anteriormente, nós podíamos usar o feedback
+que recebemos de um usuário para melhorar os resultados de uma determinada consulta para todos os usuários. Infelizmente,
+não podemos usar o mesmo artifício da ``sabedoria das massas'' no caso da busca personalizada. Como os documentos buscados
+são todos pessoais (desde e-mails a arquivos), o domínio é diferente para cada usuário. Temos, portanto, poucos cliques para
+nos basear em, o que dificulta o cálculo da relevância de um documento.
+
+Para o artigo estudado, o cenário era ainda mais específico: após clicar em um documento, o usuário é levado para outra página.
+Ou seja, a cada consulta, pode haver no máximo um clique. Assim, o conjunto de dados disponível é um grupo de consultas feitas 
+anteriormente que tiveram cliques. As consultas que não levaram à cliques são descartadas no cálculo de relevância, pois não 
+temos nenhum feedback sobre estas.
+
+Surge um novo problema de tendência: a tendência de seleção. Como selecionamos um conjunto $U$ comparativamente pequeno de 
+consultas para basear nosso algoritmo, precisamos adicionar novos parâmetros ao cálculo da perda total para chegar a 
+resultados mais precisos.
 
 % Bibliografia
 \begin{thebibliography}{6}
