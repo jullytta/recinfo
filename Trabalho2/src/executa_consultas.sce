@@ -44,6 +44,12 @@ cliques = [1];
 n_consultas = size(consultas);
 n_consultas = n_consultas(2);
 
+// Observamos diversos valores de b e identificamos qual minimiza
+// as perdas para as consultas apresentadas.
+// Tendências não consideradas.
+[b, perda] = learn_to_rank_BM25(incidencias, consultas, cliques);
+
+// Impressão de resultados para cada consulta.
 for i = 1:n_consultas
     str = strcat(["///////// Consulta #", string(i)]);
     str = strcat([str, " /////////"]);
@@ -64,11 +70,7 @@ for i = 1:n_consultas
     disp("Perda:");
     disp(perda_vet);
     
-   // Modelo probabilistico
-    // Em geral b = 0.75. Aqui, observamos diversos valores de b e verificamos
-    // qual dá melhor resultado, ou seja, minimiza as perdas.
-    //b = encontra_beta(incidencias, clique);
-    b = 0.75;
+    // Modelo probabilistico
     ranks_probabilistico = gera_simBM25(incidencias, 1, b);
     ranking_prob = gera_ranking(ranks_probabilistico);
     perda_prob = calcula_perda_clique(clique, ranks_probabilistico);
