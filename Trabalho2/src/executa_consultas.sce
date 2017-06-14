@@ -8,7 +8,7 @@ exec(diretorio+'matriz_incidencias.sce', -1); // gera_matriz_incidencias, imprim
 exec(diretorio+'modelo_probabilistico.sce', -1); // gera_simBM25
 exec(diretorio+'modelo_vetorial.sce', -1); // gera_vetorial
 exec(diretorio+'util.sce', -1); // gera_ranking
-exec('~/recinfo/Trabalho2/src/learning_to_rank.sce', -1); // calcula_perda, encontra_beta
+exec('~/recinfo/Trabalho2/src/learning_to_rank.sce', -1); // calcula_perda, learn_to_rank_BM25, ltr_BM25_select
 
 
 ///////////// Leitura da entrada /////////////
@@ -48,7 +48,7 @@ n_consultas = n_consultas(2);
 // as perdas para as consultas apresentadas.
 // Tendências não consideradas.
 [b, min_perda, perdas_s_select] = learn_to_rank_BM25(incidencias, consultas, cliques);
-disp(strcat(["Beta escolhido para BM25:", string(b)]));
+disp(strcat(["b escolhido para BM25:", string(b)]));
 
 // Impressão de resultados para cada consulta.
 for i = 1:n_consultas
