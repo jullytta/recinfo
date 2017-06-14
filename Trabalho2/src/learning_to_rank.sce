@@ -138,7 +138,7 @@ function [b, min_perda, perdas]=ltr_BM25_select(incidencias, consultas, cliques,
                 //peso_parcial = (n_consultas/total_consultas)/p_acionada;
                 
                 // Utiliza propensão empírica mostrada no artigo
-                //peso_parcial = propensao(i);
+                //peso_parcial = (n_consultas/total_consultas)/propensao(i);
                 
                 perda_parcial = perda_parcial * peso_parcial;
                 
