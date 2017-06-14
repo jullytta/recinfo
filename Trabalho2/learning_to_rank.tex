@@ -135,6 +135,8 @@ Por hora, vamos considerar que temos um ``ranking ideal'' contendo essa informa�
   \end{algorithmic}
 \end{algorithm}
 
+\newpage
+
 Uma vez que definimos nossa avaliação de $f$, é possível aprender qual uma função ótima. Por exemplo, aproveitando a 
 implementação feita em sala do ranqueamento BM25, podemos variar os parâmetros $b$ e $K_1$ até encontrar seus 
 valores que minimizam a perda total. Assim, ``aprendemos'' uma função de rankeamento para consultas futuras.
@@ -255,6 +257,7 @@ desejado).
 Os resultados podem ser observados na Fig. \ref{graf:rand}. Alguns valores de $b$ geraram uma perda muito grande, mas o 
 valor ótimo deixou de ser $0$ e passou a ser $0.15$. Ainda estranhamente baixo, contudo um pouco mais animador.
 
+
 \newpage
 
 \begin{figure}[ht]
@@ -275,8 +278,13 @@ valor ótimo deixou de ser $0$ e passou a ser $0.15$. Ainda estranhamente baixo,
 
 
 \section{Conclusões}
-A busca personalizada tem muitas limitações: desde a dificuldade em encontrar conjuntos de dados para estudo até a
-esparsidade de feedback do usuário. Precisamos de um modelo mais complexo para superar a dificuldade da falta de dados.
+A busca personalizada tem muitas limitações: a dificuldade em encontrar conjuntos de dados para estudo, a
+esparsidade de feedback do usuário, a seleção de consultas significativas para o treinamento no caso de aprendizado
+de máquina, entre outras. Precisamos de um modelo mais complexo para superar essas dificuldades.
+
+Nossos experimentos foram fortemente baseados no modelo probabilístico BM25 e mostram que a função padrão do Learning-to-Rank
+escolhe valores muito baixos para o parâmetro b. Esses resultados foram contra intuitivos. A implementação, em si, não 
+saiu como era esperado.
 
 
 % Bibliografia
