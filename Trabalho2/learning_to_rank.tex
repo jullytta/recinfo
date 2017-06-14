@@ -222,7 +222,31 @@ O conjunto de dados completo, junto da lista de stopwords e separadores, se enco
 
 
 \section{Experimentos e Resultados}
-% Onde o código pode ser encontrado, o que foi implementado, o que não fui capaz de implementar, o que eu inventei.
+As implementações foram feitas em Scilab. O código desenvolvido especificamente para este trabalho pode ser visualizado em 
+\url{https://github.com/jullytta/recinfo/tree/master/Trabalho2/src}.
+Note que muitas funções escritas em sala de aula foram reaproveitadas. Elas se encontram no mesmo repositório, porém em um
+diretório diferente: \url{https://github.com/jullytta/recinfo/tree/master/Scilab}.
+
+Inicialmente foi implementada uma função de perda que tinha como entrada um ranking ideal e uma função de ranqueamento.
+Contudo, para se adequar melhor ao escopo do artigo, foi decidido que o único dado disponível para inferir a relevância dos
+documentos seria qual deles foi clicado após a consulta. Com isso, a função de perda teve de sofrer alterações para se 
+adequar à falta de informações.
+
+De forma a simplificar a implementação, decidiu-se que o documento que recebeu o clique era mais relevante, porém não se 
+faria distinção entre os outros. Portanto, a função de perda considera todos os pares $x_i, x_j$ nos quais $x_i$ é um 
+documento clicado e $x_j$ é um documento não clicado.
+
+Essa função de perda inicial, que segue o clássico Learning-to-Rank apresentado no artigo, foi usada para 
+calcular a perda total, tanto para o modelo vetorial quanto para o modelo probabilístico, a cada consulta. 
+Em especial, como o modelo probabilístico tem parâmetros ajustáveis, valores diferentes foram testados de forma
+a encontrar a perda total mínima. Curiosamente, os valores menores de b tiveram perda total significativamente menor do que
+valores recomendados de b (como 0.75).
+
+Em seguida, prosseguimos implementando a alteração proposta pelo artigo. Com poucos dados sem muita credibilidade, as
+probabilidades estimadas foram ruins, tanto para $P(S)$ quanto para $P(U)$. Não só isso, mas todas as consultas acabavam
+por ter probabilidades muito semelhantes, o que fez com que os valores da perda total fossem equivalentes aos encontrados
+com o algoritmo padrão.
+
 
 \begin{figure}[ht]
   \caption{Gráfico comparativo entre os valores de perda com e sem a alteração proposta pelo artigo.}
