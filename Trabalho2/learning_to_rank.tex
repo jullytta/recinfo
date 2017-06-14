@@ -179,10 +179,10 @@ Surge um novo problema de tendência: a tendência de seleção. Como selecionam
 consultas para basear nosso algoritmo, precisamos adicionar novos parâmetros ao cálculo da perda total para chegar a 
 resultados mais precisos.
 
-O artigo usa ponderação de propensão inversa para calcular um peso para cada consulta. Em outras palavras, a 
-probabilidade da consulta estar no grupo selecionado $U$ e a probabilidade essa consulta ter ou não cliques são levadas em
-conta ao calcular a perda daquela consulta. Se chamamos o conjunto de consultas com cliques $S$, temos que $P(U)$ é a 
-probabilidade de $q$ estar em $U$ e $P(S)$ é a probabilidade de $q$ estar em $S$. A nova perda total é dada por:
+O artigo usa ponderação de propensão inversa para calcular um peso para cada consulta. Se chamamos de $S$ o conjunto de 
+consultas que possuem cliques, temos que a propensão de uma consulta é a probabilidade desta consulta estar em $S$, ou
+seja, $P(S)$. A ponderação também se utiliza da probabilidade da consulta estar no grupo selecionado $U$, $P(U)$.
+A nova perda total é dada por:
 
 \begin{equation}
 perda_{total}(f) = \frac{1}{|S|}\times \sum_{q \in S} \frac{P(U)}{P(S)} \times perda(f, q)
@@ -257,8 +257,10 @@ desejado).
 Os resultados podem ser observados na Fig. \ref{graf:rand}. Alguns valores de $b$ geraram uma perda muito grande, mas o 
 valor ótimo deixou de ser $0$ e passou a ser $0.15$. Ainda estranhamente baixo, contudo um pouco mais animador.
 
-
-\newpage
+Finalmente, ocorreu a ideia de usar os valores de propensão encontrados empiricamente no artigo para avaliar a função
+de perda. Por posição no ranking, tem-se $[0.4, 0.24, 0.18, 0.16]$, que significa que quanto menor a posição no rank,
+menor as chances de se conseguir um clique. Infelizmente, mesmo utilizando esses valores, o resultado foi tão parecido com 
+a Fig. \ref{graf:linear} que seria redundante adicioná-lo ao relatório.
 
 \begin{figure}[ht]
   \caption{Probabilidades estimadas e estáveis.}
