@@ -98,6 +98,9 @@ function [b, min_perda, perdas]=ltr_BM25_select(incidencias, consultas, cliques,
     n_consultas = n_consultas(2);
     
     perdas = [];
+    
+    // Valores empíricos dados pelo artigo
+    propensao = [.4, .24, .18, .16];
 
     // Conta quantas consultas com clique temos
     n_com_clique = 0;
@@ -133,6 +136,9 @@ function [b, min_perda, perdas]=ltr_BM25_select(incidencias, consultas, cliques,
                 // Chance aleatória da consulta ter um clique
                 //p_acionada = modulo(rand(), 100);
                 //peso_parcial = (n_consultas/total_consultas)/p_acionada;
+                
+                // Utiliza propensão empírica mostrada no artigo
+                //peso_parcial = propensao(i);
                 
                 perda_parcial = perda_parcial * peso_parcial;
                 
