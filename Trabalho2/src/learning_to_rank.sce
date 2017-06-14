@@ -128,6 +128,12 @@ function [b, min_perda, perdas]=ltr_BM25_select(incidencias, consultas, cliques,
                 // a probabilidade da consulta ter clique
                 peso_parcial = (n_consultas/total_consultas)/(n_com_clique/total_consultas);
                 
+                // Introdução de aleatoriedade para tentar simular probabilidades
+                // diferentes conseguidas empiricamente.
+                // Chance aleatória da consulta ter um clique
+                //p_acionada = modulo(rand(), 100);
+                //peso_parcial = (n_consultas/total_consultas)/p_acionada;
+                
                 perda_parcial = perda_parcial * peso_parcial;
                 
                 // Perda da escolha de b
