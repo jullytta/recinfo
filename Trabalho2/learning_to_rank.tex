@@ -229,6 +229,7 @@ As implementações foram feitas em Scilab. O código desenvolvido especificamen
 Note que muitas funções escritas em sala de aula foram reaproveitadas. Elas se encontram no mesmo repositório, porém em um
 diretório diferente: \url{https://github.com/jullytta/recinfo/tree/master/Scilab}.
 
+\subsection{Learning-to-Rank Clássico}
 Inicialmente foi implementada uma função de perda que tinha como entrada um ranking ideal e uma função de ranqueamento.
 Contudo, para se adequar melhor ao escopo do artigo, foi decidido que o único dado disponível para inferir a relevância dos
 documentos seria qual deles foi clicado após a consulta. Com isso, a função de perda teve de sofrer alterações para se 
@@ -244,13 +245,15 @@ Em especial, como o modelo probabilístico tem parâmetros ajustáveis, valores 
 a encontrar a perda total mínima. Curiosamente, os valores menores de b tiveram perda total significativamente menor do que
 valores recomendados de b (como 0.75).
 
+\subsection{Learning-to-Rank Alterado}
+
 Em seguida, prosseguimos implementando a alteração proposta pelo artigo. Com poucos dados sem muita credibilidade, as
 probabilidades estimadas foram ruins, tanto para $P(S)$ quanto para $P(U)$. Não só isso, mas todas as consultas acabavam
 por ter probabilidades muito semelhantes, o que fez com que os valores da perda total fossem equivalentes aos encontrados
 com o algoritmo padrão. Como podemos observar na Fig. \ref{graf:linear}, o resultado foi linear e desanimador.
 
 Procurando resultados mais interessantes, resolvemos considerar aleatória a probabilidade de uma consulta ter recebido um
-clique, $P(S)$. Assim, algumas consultas receberam alta probabilidade de clique (talvez sejam mais frequentes, ou seus 
+clique (propensão), $P(S)$. Assim, algumas consultas receberam alta probabilidade de clique (talvez sejam mais frequentes, ou seus 
 resultados são melhores) e outras receberam baixa probabilidade de clique (menos frequentes ou não possuíam o resultado 
 desejado).
 
@@ -270,7 +273,7 @@ a Fig. \ref{graf:linear} que seria redundante adicioná-lo ao relatório.
 \end{figure}
 
 \begin{figure}[ht]
-  \caption{P(S) aleatória.}
+  \caption{Propensão aleatória.}
   \label{graf:rand}
   \centering
   \includegraphics[page=1,width=.65\textwidth]{b_x_perda_rand_crop.pdf}
@@ -279,19 +282,27 @@ a Fig. \ref{graf:linear} que seria redundante adicioná-lo ao relatório.
 \pagebreak
 
 
-\section{Conclusões}
+\section{Conclusão}
+\subsection{Dificuldades Enfrentadas}
 A busca personalizada tem muitas limitações: a dificuldade em encontrar conjuntos de dados para estudo, a
 esparsidade de feedback do usuário, a seleção de consultas significativas para o treinamento no caso de aprendizado
-de máquina, entre outras. Precisamos de um modelo mais complexo para superar essas dificuldades.
+de máquina, entre outras. Modelos mais complexos do que os clássicos com cliques são necessários para obter um bom resultado.
 
 Nossos experimentos foram fortemente baseados no modelo probabilístico BM25 e mostram que a função padrão do Learning-to-Rank
-escolhe valores muito baixos para o parâmetro b. Esses resultados foram contra intuitivos. A implementação, em si, não 
-saiu como era esperado.
+escolhe valores muito baixos para o parâmetro b. Esses resultados foram contra intuitivos. Sua causa pode ter sido o conjunto
+de dados pequeno. É praticamente impossível gerar manualmente dados como esses, pois apesar de serem puramente experimentais e
+não assumirem nada sobre o comportamente do usuário, questões comportamentais acabam implícitas em dados reais.
 
+\subsection{Possíveis Melhorias}
+Como expondo previamente, os resultados inexperados provavelmente devem-se ao conjunto de dados utilizado. Possíveis melhorias
+seriam a troca completa do conjunto de dados, aumento e melhoria do conjunto existente e, a mais eficiente das opções, coleta
+de dados através de logs. Este último é o ideal (e utilizado pelos autores do artigo), contudo acessível apenas para empresas
+como provedores de e-mail, por motivos de privacidade anteriormente citados.
+
+\newpage
 
 % Bibliografia
 \begin{thebibliography}{6}
-%
 
 \bibitem {wang:bendersky:metzlet:najork}
 Wang, Xuanhui, Bendersky, Michael, Metzler, Donald, Najork, Marc: Learning to Rank with Selection Bias in Personal Search.
