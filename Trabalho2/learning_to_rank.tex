@@ -245,19 +245,38 @@ valores recomendados de b (como 0.75).
 Em seguida, prosseguimos implementando a alteração proposta pelo artigo. Com poucos dados sem muita credibilidade, as
 probabilidades estimadas foram ruins, tanto para $P(S)$ quanto para $P(U)$. Não só isso, mas todas as consultas acabavam
 por ter probabilidades muito semelhantes, o que fez com que os valores da perda total fossem equivalentes aos encontrados
-com o algoritmo padrão.
+com o algoritmo padrão. Como podemos observar na Fig. \ref{graf:linear}, o resultado foi linear e desanimador.
 
+Procurando resultados mais interessantes, resolvemos considerar aleatória a probabilidade de uma consulta ter recebido um
+clique, $P(S)$. Assim, algumas consultas receberam alta probabilidade de clique (talvez sejam mais frequentes, ou seus 
+resultados são melhores) e outras receberam baixa probabilidade de clique (menos frequentes ou não possuíam o resultado 
+desejado).
+
+Os resultados podem ser observados na Fig. \ref{graf:rand}. Alguns valores de $b$ geraram uma perda muito grande, mas o 
+valor ótimo deixou de ser $0$ e passou a ser $0.15$. Ainda estranhamente baixo, contudo um pouco mais animador.
+
+\newpage
 
 \begin{figure}[ht]
-  \caption{Gráfico comparativo entre os valores de perda com e sem a alteração proposta pelo artigo.}
+  \caption{Probabilidades estimadas e estáveis.}
+  \label{graf:linear}
   \centering
-  \includegraphics[page=1,width=1\textwidth]{b_x_perda_graf.pdf}
+  \includegraphics[page=1,width=.65\textwidth]{b_x_perda_linear_crop.pdf}
+\end{figure}
+
+\begin{figure}[ht]
+  \caption{P(S) aleatória.}
+  \label{graf:rand}
+  \centering
+  \includegraphics[page=1,width=.65\textwidth]{b_x_perda_rand_crop.pdf}
 \end{figure}
 
 \pagebreak
 
 
 \section{Conclusões}
+A busca personalizada tem muitas limitações: desde a dificuldade em encontrar conjuntos de dados para estudo até a
+esparsidade de feedback do usuário. Precisamos de um modelo mais complexo para superar a dificuldade da falta de dados.
 
 
 % Bibliografia
